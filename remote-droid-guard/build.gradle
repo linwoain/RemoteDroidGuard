@@ -16,68 +16,18 @@ group = 'org.microg.gms'
 android {
     compileSdkVersion androidCompileSdk
     buildToolsVersion "$androidBuildVersionTools"
+    namespace = "org.microg.gms.droidguard.lib"
 
     defaultConfig {
         versionName version
         minSdkVersion androidMinSdk
     }
-
+    buildFeatures {
+        aidl true
+    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                pom {
-                    name = 'Remote DroidGuard Client'
-                    description = 'Remote DroidGuard client library'
-                    url = 'https://github.com/microg/RemoteDroidGuard'
-                    licenses {
-                        license {
-                            name = 'The Apache Software License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = 'microg'
-                            name = 'microG Team'
-                        }
-                        developer {
-                            id = 'mar-v-in'
-                            name = 'Marvin W.'
-                        }
-                    }
-                    scm {
-                        url = 'https://github.com/microg/RemoteDroidGuard'
-                        connection = 'scm:git:https://github.com/microg/RemoteDroidGuard.git'
-                        developerConnection = 'scm:git:ssh://github.com/microg/RemoteDroidGuard.git'
-                    }
-                }
-
-                from components.release
-            }
-        }
-        if (project.hasProperty('sonatype.username')) {
-            repositories {
-                maven {
-                    name = 'sonatype'
-                    url = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-                    credentials {
-                        username project.getProperty('sonatype.username')
-                        password project.getProperty('sonatype.password')
-                    }
-                }
-            }
-        }
-    }
-    if (project.hasProperty('signing.keyId')) {
-        signing {
-            sign publishing.publications
-        }
-    }
-}

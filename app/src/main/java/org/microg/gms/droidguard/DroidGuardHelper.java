@@ -62,7 +62,7 @@ public class DroidGuardHelper {
                         .arch(getArch())
                         .build(),
                 versionCode);
-        DGResponse response = DGResponse.ADAPTER.decode(signedResponse.data.toByteArray());
+        DGResponse response = DGResponse.ADAPTER.decode(signedResponse.data_);
         String checksum = response.vmChecksum.hex();
         File dgCacheDir = context.getDir("dg_cache", 0);
         File dgDir = new File(dgCacheDir, checksum);

@@ -6,11 +6,11 @@
 buildscript {
     ext.safeParcelVersion = '1.7.0'
 
-    ext.kotlinVersion = '1.4.10'
+    ext.kotlinVersion = '1.9.22'
 
-    ext.wireVersion = '3.2.2'
+    ext.wireVersion = '5.0.0-alpha04'
 
-    ext.androidBuildGradleVersion = '3.6.3'
+    ext.androidBuildGradleVersion = "8.2.2"
 
     ext.androidBuildVersionTools = '29.0.3'
 
